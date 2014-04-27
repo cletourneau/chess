@@ -76,7 +76,7 @@ public class GameFrameTest {
     delegatesMoveActionToMoveCommand() {
         MoveCommand moveMoveCommand = mock( MoveCommand.class );
         frame.setMoveCommand( moveMoveCommand );
-        frame.display( aQueen().black().on( "d5" ).build() );
+        frame.display( aQueen().white().on( "d5" ).build() );
         frame.clicked( frame.getButtonNamed( "d5" ) );
         frame.clicked( frame.getButtonNamed( "e5" ) );
 

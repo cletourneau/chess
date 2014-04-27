@@ -39,7 +39,7 @@ public class MoveTest {
 
     @Test public void
     canMoveAQueen() {
-        game.display( aQueen().black().on( "d5" ).build() );
+        game.display( aQueen().white().on( "d5" ).build() );
         board.cell( "d5" ).click();
         board.cell( "h5" ).click();
         board.has( queen(), on( "h5" ) );
@@ -57,5 +57,24 @@ public class MoveTest {
         board.cell( "d2" ).click();
         board.cell( "d3" ).click();
         board.has( pawn(), on( "d3" ) );
+    }
+
+    @Test public void
+    canOnlyMoveWhiteFirst() {
+        game.display( aQueen().black().on( "d4" ).build(),
+                      aPawn().white().on( "e2" ).build());
+
+        board.cell( "d4" ).click();
+        board.cell( "d2" ).click();
+        board.hasNothingOn( "d2" );
+
+        board.cell( "e2" ).click();
+        board.cell( "e3" ).click();
+        board.hasWhite( pawn(), on( "e3" ));
+
+        board.cell( "d4" ).click();
+        board.cell( "d2" ).click();
+        board.hasBlack(queen(), on( "d2" ));
+
     }
 }

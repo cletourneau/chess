@@ -15,6 +15,7 @@ public class GameFrame extends JFrame {
     public static final Color CELL_WHITE = new Color(240, 217, 181);
     public static final Color CELL_BLACK = new Color(181, 136, 99);
     private MoveCommand moveCommand;
+    private boolean isFirstMove = true;
 
     public GameFrame() {
         this.setName( TITLE );
@@ -82,7 +83,12 @@ public class GameFrame extends JFrame {
             selection = pieces.getPieceWithPosition( source.getName() );
         }
         else {
+            if (isFirstMove && !selection.isWhite()) {
+                selection = null;
+                return;
+            }
             moveCommand.move( selection.getPosition(), source.getName() );
+            isFirstMove = false;
             selection = null;
         }
     }
