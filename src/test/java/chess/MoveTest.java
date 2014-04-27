@@ -58,4 +58,22 @@ public class MoveTest {
         board.cell( "d3" ).click();
         board.has( pawn(), on( "d3" ) );
     }
+
+    @Test public void
+    canOnlyAllowMovesAlternatingColors() {
+        game.display( aQueen().black().on( "d8" ).build(),
+                aPawn().white().on( "e2" ).build());
+
+        board.cell( "e2" ).click();
+        board.cell( "e4" ).click();
+        board.hasWhite( pawn(), on( "e4" ));
+
+        board.cell( "e4" ).click();
+        board.cell( "e5" ).click();
+        board.hasNothingOn( "e5" );
+
+        board.cell( "d8" ).click();
+        board.cell( "d4" ).click();
+        board.hasBlack( queen(), on( "d4" ));
+    }
 }
